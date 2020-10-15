@@ -32,41 +32,68 @@ public class Deck {
         int aux;
         final int totalCartas = myDeck.size();
         ArrayList<Card> tempDeck = new ArrayList<>();
-        for (int i = 0; i < totalCartas; i++) {
+        if (myDeck.size()>0) {
+            for (int i = 0; i < totalCartas; i++) {
             aux = random.nextInt(myDeck.size());
             tempDeck.add(myDeck.remove(aux));
-        }
-        for (int i = 0; i < totalCartas; i++) {
-            aux = random.nextInt(tempDeck.size());
-            myDeck.add(tempDeck.remove(aux));
-        }
+            }
+            for (int i = 0; i < totalCartas; i++) {
+                aux = random.nextInt(tempDeck.size());
+                myDeck.add(tempDeck.remove(aux));
+            }
         System.out.println("Se mezcló el deck");
+        } else {
+            System.out.println("No hay cartas en deck");
+        }
+        
     }
     
     public void head(){
-        System.out.printf("%s\nQuedan %d cartas en deck\n", myDeck.remove(0),
+        if(myDeck.size()>0){
+            System.out.printf("%s\nQuedan %d cartas en deck\n", myDeck.remove(0),
                 myDeck.size());
+        } else {
+            System.out.println("No hay cartas en deck");
+        }
+        
     }
     
     public void pick(){
-        int ranCard = random.nextInt(myDeck.size());
-        System.out.printf("%s\nQuedan %d cartas en deck\n", myDeck.remove(ranCard),
-                myDeck.size());
+        int ranCard; 
+        if(myDeck.size()>0){
+            ranCard = random.nextInt(myDeck.size());
+            System.out.printf("%s\nQuedan %d cartas en deck\n", 
+                myDeck.remove(ranCard), myDeck.size());
+        } else {
+            System.out.println("No hay cartas en deck");
+        }
+        
     }
     
     public void hand(){
         for (int i = 0; i < 5; i++) {
-            System.out.println(myDeck.remove(i));
+            if (myDeck.size()> 0) {
+                System.out.println(myDeck.remove(0));
+            } else {
+                System.out.println("No hay suficientes cartas en deck");
+                break;
+            }
+            
         }
         System.out.printf("Quedan %d cartas en deck\n", myDeck.size());
     }
     
     public Card[] Hand(){
         Card[] myHand = new Card[5];
-        for (int i = 0; i < myHand.length; i++) {
+        if (myDeck.size()>0) {
+            for (int i = 0; i < myHand.length; i++) {
             myHand[i] = myDeck.remove(i);
             System.out.println(myHand[i]);
+            }
+        } else {
+            System.out.println("No hay suficientes cartas en deck");
         }
+        
         System.out.printf("Quedan %d cartas en deck\n", myDeck.size());
         return myHand;
     }
