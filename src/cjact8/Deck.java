@@ -28,7 +28,7 @@ public class Deck {
         }
     }
     
-    public void shuffle(){
+    public void shuffle() throws Exception{
         int aux;
         final int totalCartas = myDeck.size();
         ArrayList<Card> tempDeck = new ArrayList<>();
@@ -43,47 +43,46 @@ public class Deck {
             }
         System.out.println("Se mezcló el deck");
         } else {
-            System.out.println("No hay cartas en deck");
+            throw new Exception("No hay cartas en deck");
         }
         
     }
     
-    public void head(){
+    public void head() throws Exception{
         if(myDeck.size()>0){
             System.out.printf("%s\nQuedan %d cartas en deck\n", myDeck.remove(0),
                 myDeck.size());
         } else {
-            System.out.println("No hay cartas en deck");
+            throw new Exception("No hay cartas en deck");
         }
         
     }
     
-    public void pick(){
+    public void pick() throws Exception{
         int ranCard; 
         if(myDeck.size()>0){
             ranCard = random.nextInt(myDeck.size());
             System.out.printf("%s\nQuedan %d cartas en deck\n", 
                 myDeck.remove(ranCard), myDeck.size());
         } else {
-            System.out.println("No hay cartas en deck");
+            throw new Exception("No hay cartas en deck");
         }
         
     }
     
-    public void hand(){
+    public void hand() throws Exception{
         for (int i = 0; i < 5; i++) {
             if (myDeck.size()> 0) {
                 System.out.println(myDeck.remove(0));
             } else {
-                System.out.println("No hay suficientes cartas en deck");
-                break;
+                throw new Exception("No hay suficientes cartas en deck");
             }
             
         }
         System.out.printf("Quedan %d cartas en deck\n", myDeck.size());
     }
     
-    public Card[] Hand(){
+    public Card[] Hand() throws Exception{
         Card[] myHand = new Card[5];
         if (myDeck.size()>0) {
             for (int i = 0; i < myHand.length; i++) {
@@ -91,7 +90,7 @@ public class Deck {
             System.out.println(myHand[i]);
             }
         } else {
-            System.out.println("No hay suficientes cartas en deck");
+            throw new Exception("No hay suficientes cartas en deck");
         }
         
         System.out.printf("Quedan %d cartas en deck\n", myDeck.size());
